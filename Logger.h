@@ -3,7 +3,8 @@
 
 #include "Arduino.h"
 
-#define USE_LOGGER 
+// Uncomment to view debug output
+#define USE_LOGGER
 
 class Logger {
     public:

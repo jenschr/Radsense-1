@@ -10,7 +10,7 @@
 // Also update intToLedMode-function if changed!
 enum class LedMode {
   OFF = 0, // Turn LED off
-  TRAFFIC_LIGHT = 1, // RYG
+  METRIC = 1, // RYG
   IMPERIAL = 2, // RWB
 };
 
@@ -45,17 +45,20 @@ class State {
         bool animating();
 
         LedMode getLedMode();
+        void getLedModeAsString( char * mode );
         void showActiveLedMode();
         void setLedMode( LedMode newMode );
         void setLedSubMode( int newState );
 
         DeviceMode getDeviceMode();
+        void getDeviceModeAsString( char * mode );
         void showActiveDeviceMode();
         void setDeviceMode( DeviceMode newMode );
         void setDeviceSubMode( int newState );
-        void setPixels(uint8_t r, uint8_t g, uint8_t b);
+        void setPixels(uint8_t r, uint8_t g, uint8_t b, uint8_t firstPixel = 0, uint8_t numPixels = 6);
 
         FilterMode getFilterMode();
+        void getFilterModeAsString( char * mode );
         void showActiveFilterMode();
         void setFilterMode( FilterMode newMode );
         void setFilterSubMode( int newFilterMode );

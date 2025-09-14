@@ -1,7 +1,7 @@
 #include "State.h"
 
 State::State(){
-    _activeLedMode = LedMode::TRAFFIC_LIGHT;
+    _activeLedMode = LedMode::METRIC;
     _activeDeviceMode = DeviceMode::DEFAULT_MEDIUM;
     currentAnimation = AnimationType::NONE;
 }
@@ -25,7 +25,7 @@ void State::begin(int ledPin, int numLeds)
   Logger::print(F("savedDeviceMode "));
   Logger::print(savedDeviceMode);
 
-  unsigned int savedFilterMode = preferences.getUInt("FilterMode", 0);
+  unsigned int savedFilterMode = preferences.getUInt("FilterMode", 2);
   setFilterMode( intToFilterMode(savedFilterMode) );
   Logger::print(F("savedFilterMode "));
   Logger::print(savedFilterMode);
@@ -148,6 +148,17 @@ LedMode State::getLedMode()
   return _activeLedMode;
 }
 
+void State::getLedModeAsString( char * mode )
+{
+  switch (_activeLedMode)
+  {
+    case LedMode::OFF : sprintf(mode,"Off"); break;
+    case LedMode::METRIC: sprintf(mode,"Metric"); break;
+    case LedMode::IMPERIAL: sprintf(mode,"Imperial"); break;
+    default: sprintf(mode,"Unknown"); break;
+  }
+}
+
 // Device modes handle how the device works
 
 void State::showActiveDeviceMode()
@@ -213,6 +224,20 @@ DeviceMode State::getDeviceMode()
   return _activeDeviceMode;
 }
 
+void State::getDeviceModeAsString( char * mode )
+{
+  switch (_activeDeviceMode)
+  {
+    case DeviceMode::DEFAULT_SLOW: sprintf(mode,"Slow"); break;
+    case DeviceMode::DEFAULT_MEDIUM: sprintf(mode,"Medium"); break;
+    case DeviceMode::DEFAULT_FAST: sprintf(mode,"Fast"); break;
+    case DeviceMode::BOTH_SLOW: sprintf(mode,"SlowSticky"); break;
+    case DeviceMode::BOTH_MEDIUM: sprintf(mode,"MediumSticky"); break;
+    case DeviceMode::BOTH_FAST: sprintf(mode,"FastSticky"); break;
+    default: sprintf(mode,"Unknown"); break;
+  }
+}
+
 void State::showActiveFilterMode()
 {
   Logger::print(F("DeviceMode::showActiveFilterMode "));
@@ -276,9 +301,20 @@ FilterMode State::getFilterMode()
   return _activeFilterMode;
 }
 
-void State::setPixels(uint8_t r, uint8_t g, uint8_t b)
+void State::getFilterModeAsString( char * mode )
 {
-  for(int i=0;i<_numLeds;i++)
+  switch (_activeFilterMode)
+  {
+    case FilterMode::WEAK : sprintf(mode,"Weak"); break;
+    case FilterMode::MEDIUM: sprintf(mode,"Medium"); break;
+    case FilterMode::STRONG: sprintf(mode,"Strong"); break;
+    default: sprintf(mode,"Unknown"); break;
+  }
+}
+
+void State::setPixels(uint8_t r, uint8_t g, uint8_t b, uint8_t firstPixel, uint8_t numPixels)
+{
+  for(int i=firstPixel;i<(firstPixel+numPixels);i++)
   {
     pixels->setPixelColor(i, r, g, b);
   }
@@ -290,9 +326,9 @@ LedMode State::intToLedMode( int state )
   switch( state )
   {
     case 0: return LedMode::OFF;
-    case 1: return LedMode::TRAFFIC_LIGHT;
+    case 1: return LedMode::METRIC;
     case 2: return LedMode::IMPERIAL;
-    default: return LedMode::TRAFFIC_LIGHT;
+    default: return LedMode::METRIC;
   }
 }
 
