@@ -11,4 +11,5 @@ Open source Radsense1 firmware for use with the Arduino IDE. Also available as [
 - Fix stuck mode where target walks off to the side
 - Update BLE to support the latest NimBLE version (2.3.6). Device will now output 3 different characteristics: Data (what the radar sees), Settings (current modes on the device), Debug (some data that might be useful in rare cases)
 - Ensure that BLE always turns on when the user button is pushed
+- Make sure indicator lights update when changing mode and speed
 - Fix rare case where the radar does not initialize properly by blinking error message and then letting Watchdog boot the device to try again
