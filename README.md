@@ -1,12 +1,14 @@
 # Radsense1
 
-Open source Radsense1 firmware for use with the Arduino IDE. Also available as [a PlatformIO project](https://github.com/jenschr/Radsense1). Get the [hardware from Maketronics](https://maketronics.no/radsense-1/). Learn more about the device and [how to program it with Arduino IDE](https://maketronics.no/support/radsense-1-with-arduino/) on [the Maketronics support pages](https://maketronics.no/support/).
+Open source Radsense1 firmware for use with the Arduino IDE. Also available as [a PlatformIO project](https://github.com/jenschr/Radsense1). Get the [hardware from Maketronics](https://maketronics.no/radsense-1/). Get the [latest firmware](./prebuilt/) and upload it using your browser with [the Adafruit WebSerial ESPTool](https://adafruit.github.io/Adafruit_WebSerial_ESPTool/).
+
+Learn more about the device and [how to program it with Arduino IDE](https://maketronics.no/support/radsense-1-with-arduino/) on [the Maketronics support pages](https://maketronics.no/support/).
 
 ## Release v1.72
 
 - Solves a bug that only applies to the Arduino IDE by setting pinMode for the RX/TX pins used to talk to the radar. It looks like Arduino-esp32 no longer does this by default, so we must ensure that it's set.
 
-This version and onwards also come as a prebuilt binary that can be uploaded using [the Adafruit WebSerial ESPTool](https://adafruit.github.io/Adafruit_WebSerial_ESPTool/). This approach requires no installation of software/tools and no coding. Just [download the file](./prebuilt/) for the version you want and upload it from the browser.
+This version and onwards will be published as a prebuilt binary. This approach requires no installation of software/tools and no coding. Just [download the file](./prebuilt/) for the version you want and [upload it from the browser](https://adafruit.github.io/Adafruit_WebSerial_ESPTool/).
 
 ## Release v1.71
 
