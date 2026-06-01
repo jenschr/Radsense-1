@@ -6,6 +6,8 @@ Open source Radsense1 firmware for use with the Arduino IDE. Also available as [
 
 - Solves a bug that only applies to the Arduino IDE by setting pinMode for the RX/TX pins used to talk to the radar. It looks like Arduino-esp32 no longer does this by default, so we must ensure that it's set.
 
+This version and onwards also come as a prebuilt binary that can be uploaded using [the Adafruit WebSerial ESPTool](https://adafruit.github.io/Adafruit_WebSerial_ESPTool/). This approach requires no installation of software/tools and no coding. Just [download the file](./prebuilt/) for the version you want and upload it from the browser.
+
 ## Release v1.71
 
 - Fix stuck mode where target walks off to the side
